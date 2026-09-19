@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Movie Night Picker</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">Movie Night Picker</div>
+
+        <nav>
+            <a href="#">Home</a>
+            <a href="#picker">Movie Picker</a>
+        </nav>
+    </header>
+
+
+    <main>
+
+        <!-- Introduction -->
+        <section class="hero">
+
+            <p class="eyebrow">
+                PERSONALISED MOVIE DISCOVERY
+            </p>
+
+            <h1>
+                What should we watch tonight?
+            </h1>
+
+            <p>
+                Tell us what you are looking for and we will
+                find movies that match your preferences.
+            </p>
+
+        </section>
+
+
+        <!-- User Preferences -->
+        <section id="picker" class="picker-card">
+
+            <h2>
+                Choose your preferences
+            </h2>
+
+            <form id="movieForm">
+
+                <!-- Movie search -->
+                <div class="form-group">
+
+                    <label for="movieInput">
+                        Movie or keyword
+                    </label>
+
+                    <input
+                        type="text"
+                        id="movieInput"
+                        placeholder="e.g. Avengers, Batman, Avatar"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-grid">
+
+                    <!-- Genre -->
+                    <div class="form-group">
+
+                        <label for="genre">
+                            Genre
+                        </label>
+
+                        <select id="genre">
+
+                            <option value="Any">
+                                Any Genre
+                            </option>
+
+                            <option value="Action">
+                                Action
+                            </option>
+
+                            <option value="Adventure">
+                                Adventure
+                            </option>
+
+                            <option value="Animation">
+                                Animation
+                            </option>
+
+                            <option value="Comedy">
+                                Comedy
+                            </option>
+
+                            <option value="Crime">
+                                Crime
+                            </option>
+
+                            <option value="Drama">
+                                Drama
+                            </option>
+
+                            <option value="Horror">
+                                Horror
+                            </option>
+
+                            <option value="Romance">
+                                Romance
+                            </option>
+
+                            <option value="Sci-Fi">
+                                Sci-Fi
+                            </option>
+
+                            <option value="Thriller">
+                                Thriller
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Mood -->
+                    <div class="form-group">
+
+                        <label for="mood">
+                            Mood
+                        </label>
+
+                        <select id="mood">
+
+                            <option value="Any">
+                                Any Mood
+                            </option>
+
+                            <option value="Fun">
+                                Fun
+                            </option>
+
+                            <option value="Exciting">
+                                Exciting
+                            </option>
+
+                            <option value="Relaxing">
+                                Relaxing
+                            </option>
+
+                            <option value="Scary">
+                                Scary
+                            </option>
+
+                            <option value="Romantic">
+                                Romantic
+                            </option>
+
+                            <option value="Serious">
+                                Serious
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Runtime -->
+                    <div class="form-group">
+
+                        <label for="runtime">
+                            Maximum runtime
+                        </label>
+
+                        <select id="runtime">
+
+                            <option value="Any">
+                                Any Length
+                            </option>
+
+                            <option value="90">
+                                90 minutes
+                            </option>
+
+                            <option value="120">
+                                2 hours
+                            </option>
+
+                            <option value="150">
+                                2.5 hours
+                            </option>
+
+                            <option value="180">
+                                3 hours
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Rating -->
+                    <div class="form-group">
+
+                        <label for="rating">
+                            Minimum IMDb rating
+                        </label>
+
+                        <select id="rating">
+
+                            <option value="0">
+                                Any Rating
+                            </option>
+
+                            <option value="6">
+                                6.0+
+                            </option>
+
+                            <option value="7">
+                                7.0+
+                            </option>
+
+                            <option value="8">
+                                8.0+
+                            </option>
+
+                            <option value="9">
+                                9.0+
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="primary-button">
+
+                    Find My Movies
+
+                </button>
+
+            </form>
+
+
+            <p
+                id="message"
+                class="message">
+            </p>
+
+        </section>
+
+
+        <!-- Loading -->
+        <section
+            id="loadingSection"
+            class="loading hidden">
+
+            <div class="loading-card">
+
+                <div class="spinner"></div>
+
+                <h2>
+                    Finding your movies...
+                </h2>
+
+                <p id="loadingMessage">
+                    Connecting to OMDb API
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- Results -->
+        <section
+            id="resultsSection"
+            class="results hidden">
+
+            <div class="results-heading">
+
+                <div>
+
+                    <p class="eyebrow">
+                        PERSONALISED RESULTS
+                    </p>
+
+                    <h2>
+                        Movies selected for you
+                    </h2>
+
+                </div>
+
+                <button
+                    id="newSearchButton"
+                    class="secondary-button">
+
+                    New Search
+
+                </button>
+
+            </div>
+
+
+            <div
+                id="movieResults"
+                class="movie-grid">
+            </div>
+
+        </section>
+
+
+        <!-- Movie details -->
+        <section
+            id="detailsSection"
+            class="details hidden">
+
+            <button
+                id="backButton"
+                class="secondary-button">
+
+                ← Back to Results
+
+            </button>
+
+
+            <div
+                id="movieDetails"
+                class="details-card">
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            Movie Night Picker — Prototype
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
